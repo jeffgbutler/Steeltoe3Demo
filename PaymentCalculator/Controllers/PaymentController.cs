@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using PaymentCalculator.Models;
 using PaymentCalculator.Services;
+using Steeltoe.Extensions.Configuration.CloudFoundry;
 
 namespace PaymentCalculator.Controllers
 {
@@ -11,16 +13,19 @@ namespace PaymentCalculator.Controllers
     {
         private PaymentService PaymentService;
         private IHitCounterService HitCounterService;
+        private CloudFoundryApplicationOptions AppOptions;
 
         private readonly ILogger _logger;
 
         public PaymentController(PaymentService paymentService,
                 IHitCounterService hitCounterService,
-                ILogger<PaymentController> logger)
+                ILogger<PaymentController> logger,
+                IOptions<CloudFoundryApplicationOptions> appOptions)
         {
             PaymentService = paymentService;
             HitCounterService = hitCounterService;
             _logger = logger;
+            AppOptions = appOptions.Value;
         }
 
         [HttpGet]
@@ -36,7 +41,7 @@ namespace PaymentCalculator.Controllers
                 Amount = Amount,
                 Rate = Rate,
                 Years = Years,
-                Instance = "local",
+                Instance = AppOptions.InstanceIndex.ToString(),
                 Count = HitCounterService.GetAndIncrement(),
                 Payment = Payment
             };

@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PaymentCalculator.Services;
 using Microsoft.OpenApi.Models;
+using Steeltoe.Extensions.Configuration.CloudFoundry;
 
 namespace PaymentCalculator
 {
@@ -20,6 +21,10 @@ namespace PaymentCalculator
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // access to VCAP_ variables in cloud foundry
+            services.AddOptions();
+            services.ConfigureCloudFoundryOptions(Configuration);
+
             services.AddControllers();
             services.AddCors();
             services.AddOptions();
