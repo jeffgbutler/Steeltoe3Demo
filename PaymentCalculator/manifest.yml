@@ -1,0 +1,3 @@
+﻿applications:
+- name: DotNetPaymentService
+  random-route: true
