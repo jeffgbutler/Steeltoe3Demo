@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using Steeltoe.Common.Hosting;
+using Steeltoe.Extensions.Configuration.CloudFoundry;
+using Steeltoe.Management.CloudFoundry;
 
 namespace PaymentCalculator
 {
@@ -12,6 +15,9 @@ namespace PaymentCalculator
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            .AddCloudFoundryConfiguration()
+            .UseCloudHosting()
+            .AddCloudFoundryActuators()
             .ConfigureWebHostDefaults(webBuilder =>
             {
                 webBuilder.UseStartup<Startup>();
