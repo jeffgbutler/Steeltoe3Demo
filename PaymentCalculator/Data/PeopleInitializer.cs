@@ -7,6 +7,8 @@ namespace PaymentCalculator.Data
     {
         public static void Initialize(SteeltoeContext context)
         {
+            context.Database.EnsureCreated();
+            
             if (context.People.Any())
             {
                 return;
@@ -14,12 +16,12 @@ namespace PaymentCalculator.Data
 
             var people = new Person[]
             {
-                new Person{ID=1,FirstName="Fred",LastName="Flintstone"},
-                new Person{ID=2,FirstName="Wilma",LastName="Flintstone"},
-                new Person{ID=3,FirstName="Pebbles",LastName="Flintstone"},
-                new Person{ID=4,FirstName="Barney",LastName="Rubble"},
-                new Person{ID=5,FirstName="Betty",LastName="Rubble"},
-                new Person{ID=6,FirstName="Bamm Bamm",LastName="Rubble"}
+                new Person{FirstName="Fred",LastName="Flintstone"},
+                new Person{FirstName="Wilma",LastName="Flintstone"},
+                new Person{FirstName="Pebbles",LastName="Flintstone"},
+                new Person{FirstName="Barney",LastName="Rubble"},
+                new Person{FirstName="Betty",LastName="Rubble"},
+                new Person{FirstName="Bamm Bamm",LastName="Rubble"}
             };
 
             foreach (Person p in people)
