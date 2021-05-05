@@ -1,13 +1,14 @@
 # Steeltoe Demo
 
-Demoe application showing Steeltoe integration with Cloud Foundry. Shows the following aspects of Steeltoe:
+Demo application showing Steeltoe integration with Cloud Foundry. Shows the following aspects of Steeltoe:
 
 - Managament Endpoints
-- Service bindings for Redis and SQL Server
+- Dynamic Logging
+- Service connectors for Redis and SQL Server
 - Cloud Foundry Options
 
-When running in "Development" mode (local), the app will conect to SQL Server and will use a hit counter defined with an
-in-memory cache. When running in "Production" mode (on Cloud Fundry in this case), the app will conect to both Redis and SQL Server.
+When running in "Development" mode (local), the app will connect to SQL Server and will use a hit counter defined with an
+in-memory cache. When running in "Production" mode (on Cloud Foundry in this case), the app will connect to both Redis and SQL Server.
 
 ## Prerequisites
 
@@ -22,7 +23,7 @@ the settings in appsettings.Development.json as follows:
 }
 ```
 
-In other enviroments, and on Cloud Foundry, the app needs to connect to SQL server somewhere. It is easy to run SQL Server
+In other enviroments, and on Cloud Foundry, the app needs to connect to SQL Server somewhere. It is easy to run SQL Server
 in Docker following the instructions here: https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker
 
 ## Cloud Foundry Setup
