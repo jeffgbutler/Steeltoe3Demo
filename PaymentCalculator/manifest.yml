@@ -3,3 +3,4 @@
   random-route: true
   services:
   - jgb-redis
+  - jgb-sqlserver
