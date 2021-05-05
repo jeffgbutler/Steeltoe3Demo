@@ -7,6 +7,9 @@ using PaymentCalculator.Services;
 using Microsoft.OpenApi.Models;
 using Steeltoe.Extensions.Configuration.CloudFoundry;
 using Steeltoe.Connector.Redis;
+using Steeltoe.Connector.SqlServer;
+using Steeltoe.Connector.SqlServer.EFCore;
+using PaymentCalculator.Data;
 
 namespace PaymentCalculator
 {
@@ -27,6 +30,9 @@ namespace PaymentCalculator
             // access to VCAP_ variables in cloud foundry
             services.AddOptions();
             services.ConfigureCloudFoundryOptions(Configuration);
+
+            services.AddDbContext<SteeltoeContext>(options => options.UseSqlServer(Configuration));
+            services.AddSqlServerHealthContributor(Configuration);
 
             services.AddControllers();
             services.AddCors();
